@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/.vs
+/env_qt
+/ex
+/4 апреля - Такими как есть.mp3
+/50 Cent_Dr. Dre_Eminem - Crack a Bottle (eminem50cent.ru).mp3
+/allan-rayman-13_(mp3CC.com).mp3
+*.mp3
