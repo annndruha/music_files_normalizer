@@ -464,6 +464,11 @@
     </disabled>
    </palette>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>9</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Music file names normalizer</string>
   </property>
@@ -488,6 +493,9 @@
       <bold>false</bold>
      </font>
     </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
     <property name="text">
      <string>Music file names normalizer</string>
     </property>
@@ -507,6 +515,9 @@
       <height>331</height>
      </rect>
     </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
     <property name="title">
      <string>Name editor</string>
     </property>
@@ -519,6 +530,9 @@
        <height>281</height>
       </rect>
      </property>
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <layout class="QVBoxLayout" name="name_layout">
       <item>
        <widget class="QCheckBox" name="checkBox_mp3">
@@ -526,6 +540,9 @@
          <font>
           <pointsize>10</pointsize>
          </font>
+        </property>
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
         </property>
         <property name="text">
          <string>Replace &quot;.mp3.mp3&quot; to &quot;.mp3&quot;</string>
@@ -542,6 +559,9 @@
           <pointsize>10</pointsize>
          </font>
         </property>
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
+        </property>
         <property name="text">
          <string>Delete brackets (smth), [smth]</string>
         </property>
@@ -551,11 +571,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="checkBox_apostrophe">
+       <widget class="QCheckBox" name="checkBox_samename">
         <property name="font">
          <font>
           <pointsize>10</pointsize>
          </font>
+        </property>
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
         </property>
         <property name="text">
          <string>Delete if file have same filename</string>
@@ -572,6 +595,9 @@
           <pointsize>10</pointsize>
          </font>
         </property>
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
+        </property>
         <property name="text">
          <string>Replace &quot;—&quot; to &quot;-&quot;</string>
         </property>
@@ -586,6 +612,9 @@
           <bold>false</bold>
          </font>
         </property>
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
+        </property>
         <property name="text">
          <string>Replace underscore to space</string>
         </property>
@@ -598,48 +627,15 @@
           <pointsize>10</pointsize>
          </font>
         </property>
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
+        </property>
         <property name="text">
          <string>User replace:</string>
         </property>
        </widget>
       </item>
      </layout>
-    </widget>
-    <widget class="QPlainTextEdit" name="plainTextEdit_from">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>290</y>
-       <width>121</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-    </widget>
-    <widget class="QPlainTextEdit" name="plainTextEdit_to">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>210</x>
-       <y>290</y>
-       <width>121</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
     </widget>
     <widget class="QLabel" name="label_replace_to">
      <property name="enabled">
@@ -658,11 +654,56 @@
        <pointsize>10</pointsize>
       </font>
      </property>
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <property name="text">
       <string>to</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_from">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>290</y>
+       <width>113</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_to">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>290</y>
+       <width>113</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
      </property>
     </widget>
    </widget>
@@ -674,6 +715,9 @@
       <width>821</width>
       <height>101</height>
      </rect>
+    </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
     </property>
     <property name="title">
      <string>Select folder</string>
@@ -687,27 +731,15 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <property name="text">
       <string/>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>resources/folder-outline.ico</normaloff>resources/folder-outline.ico</iconset>
-     </property>
-    </widget>
-    <widget class="QPlainTextEdit" name="plainTextEdit_filepath">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>30</y>
-       <width>761</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
+       <normaloff>resources/folder.ico</normaloff>resources/folder.ico</iconset>
      </property>
     </widget>
     <widget class="QCheckBox" name="check_include_subfolder">
@@ -724,11 +756,32 @@
        <pointsize>10</pointsize>
       </font>
      </property>
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
      <property name="text">
       <string>Include subfolders</string>
      </property>
      <property name="checked">
       <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_filepath">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>30</y>
+       <width>761</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
      </property>
     </widget>
    </widget>
@@ -738,8 +791,11 @@
       <x>370</x>
       <y>320</y>
       <width>271</width>
-      <height>121</height>
+      <height>111</height>
      </rect>
+    </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
     </property>
     <property name="title">
      <string>Options</string>
@@ -750,8 +806,11 @@
        <x>10</x>
        <y>20</y>
        <width>253</width>
-       <height>91</height>
+       <height>81</height>
       </rect>
+     </property>
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
      </property>
      <layout class="QVBoxLayout" name="options_layout">
       <item>
@@ -761,11 +820,14 @@
           <pointsize>10</pointsize>
          </font>
         </property>
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
+        </property>
         <property name="text">
-         <string>Do all</string>
+         <string>Force rename</string>
         </property>
         <property name="checked">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -776,23 +838,14 @@
           <pointsize>10</pointsize>
          </font>
         </property>
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
+        </property>
         <property name="text">
-         <string>Open dialog to correct</string>
+         <string>Open manual rename dialog</string>
         </property>
         <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioButton__skip">
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Skip file</string>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -813,6 +866,9 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
     <property name="text">
      <string>Start</string>
     </property>
@@ -823,8 +879,11 @@
       <x>370</x>
       <y>160</y>
       <width>471</width>
-      <height>161</height>
+      <height>151</height>
      </rect>
+    </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
     </property>
     <property name="title">
      <string>Tags</string>
@@ -834,9 +893,12 @@
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>471</width>
-       <height>131</height>
+       <width>451</width>
+       <height>121</height>
       </rect>
+     </property>
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
      </property>
      <layout class="QVBoxLayout" name="tags_layout">
       <item>
@@ -845,6 +907,9 @@
          <font>
           <pointsize>10</pointsize>
          </font>
+        </property>
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
         </property>
         <property name="text">
          <string>Delete all tags</string>
@@ -861,8 +926,11 @@
           <pointsize>10</pointsize>
          </font>
         </property>
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
+        </property>
         <property name="text">
-         <string>Set new Artist tag as part before &quot; - &quot;</string>
+         <string>Set new Artist-tag as part before &quot; - &quot;</string>
         </property>
         <property name="checked">
          <bool>false</bool>
@@ -876,8 +944,11 @@
           <pointsize>10</pointsize>
          </font>
         </property>
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
+        </property>
         <property name="text">
-         <string>Set new Song name tag as part after &quot; - &quot;</string>
+         <string>Set new Song-name-tag as part after &quot; - &quot;</string>
         </property>
         <property name="checked">
          <bool>false</bool>
@@ -904,6 +975,9 @@
       <pointsize>10</pointsize>
      </font>
     </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
     <property name="value">
      <number>0</number>
     </property>
@@ -923,6 +997,9 @@
       <height>16</height>
      </rect>
     </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
     <property name="text">
      <string>by Annndruha</string>
     </property>
@@ -931,22 +1008,18 @@
  </widget>
  <tabstops>
   <tabstop>pushButton_path</tabstop>
-  <tabstop>plainTextEdit_filepath</tabstop>
   <tabstop>check_include_subfolder</tabstop>
   <tabstop>checkBox_mp3</tabstop>
   <tabstop>checkBox_brackets</tabstop>
-  <tabstop>checkBox_apostrophe</tabstop>
+  <tabstop>checkBox_samename</tabstop>
   <tabstop>checkBox_defis</tabstop>
   <tabstop>checkBox_underscore</tabstop>
   <tabstop>checkBox_user_replace</tabstop>
-  <tabstop>plainTextEdit_from</tabstop>
-  <tabstop>plainTextEdit_to</tabstop>
   <tabstop>checkBox_delete_tags</tabstop>
   <tabstop>checkBox_set_artist_tag</tabstop>
   <tabstop>checkBox_set_song_tag</tabstop>
   <tabstop>radioButton_all</tabstop>
   <tabstop>radioButton__dialog</tabstop>
-  <tabstop>radioButton__skip</tabstop>
   <tabstop>pushButton_start</tabstop>
  </tabstops>
  <resources/>

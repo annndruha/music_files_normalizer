@@ -1,24 +1,14 @@
-#from PyQt5 import QtWidgets, uic
-#import sys
-#import time
-
-#if __name__ == "__main__":
-#    app = QtWidgets.QApplication([])
-#    win = uic.loadUi("mainwindow.ui") # расположение вашего файла .ui
- 
-#    win.show()
-#    sys.exit(app.exec())
-
-
+# Music file names normalizer
+# Develop by @Annndruha
+# 2020
 
 from PyQt5 import QtWidgets
 from mainwindow import Ui_MainWindow
-from implementation import MyWindow
+from implementation import MyWindow, MyDialog
 import sys
 
 app = QtWidgets.QApplication([])
 application = MyWindow()
 application.show()
 
-app.exec()
-#sys.exit()
+sys.exit(app.exec())
