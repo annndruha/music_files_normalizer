@@ -173,8 +173,8 @@ class MyWindow(QtWidgets.QMainWindow):
 
 
     def _end(self):
-        print(".mp3 files found: "+str(len(self.file_paths)))
-        print("Renames: "+ str(self.renames_counter))
+        print("INFO: mp3 files found: "+str(len(self.file_paths)))
+        print("INFO: Total renames: "+ str(self.renames_counter))
         self.file_paths = []
         self.new_name = ''
         self.old_path = ''
