@@ -32,6 +32,7 @@ class MyWindow(QtWidgets.QMainWindow):
         self.ui.pushButton_start.clicked.connect(self._start)
         self.ui.pushButton_path.clicked.connect(self._select_path)
         self.ui.checkBox_user_replace.stateChanged.connect(self._update_rename_state)
+        self.ui.checkBox_logs.stateChanged.connect(self.changesize)
 
         self.mydialog.ui.pushButton_cancel.clicked.connect(self._dialog_cancel)
         self.mydialog.ui.pushButton_skip.clicked.connect(self._dialog_skip)
@@ -44,6 +45,7 @@ class MyWindow(QtWidgets.QMainWindow):
         self.old_path = ''
         self.old_name = ''
         self.renames_counter = 0
+        self.start_first_time = True
 
 
     # Dialog signals
@@ -85,6 +87,17 @@ class MyWindow(QtWidgets.QMainWindow):
             self.ui.lineEdit_from.setText('')
             self.ui.lineEdit_to.setText('')
 
+    def changesize(self):
+        if self.ui.checkBox_logs.isChecked():
+            self.setMaximumSize(1600,500)
+            self.resize(1600,500)
+            self.setMinimumSize(1600,500)
+        else:
+            self.setMinimumSize(840,500)
+            self.resize(840,500)
+            self.setMaximumSize(840,500)
+
+    # Functions
     def _get_files_list(self):
         try:
             path = self.ui.lineEdit_filepath.text()
@@ -99,33 +112,50 @@ class MyWindow(QtWidgets.QMainWindow):
 
             self.file_paths = list(filter(lambda x: x.endswith('.mp3'), self.file_paths))
         except:
-            print("Wrong way!")
+            self.ui.plainTextEdit_log.insertPlainText("\nERROR: Incorrect folder path!")
+            #print("Wrong way!")
 
     def _rename(self, old_path):
         path, old_name = os.path.split(old_path)[0], os.path.split(old_path)[1]
         new_name = old_name
+        for _ in range(1,10):
+            if self.ui.checkBox_brackets.isChecked():
+                new_name = re.sub(r'\([^\(\)]*(\([^\(\)]*(\([^\(\)]*\))*[^\(\)]*\))*[^\(\)]*\)', '', new_name)
+                new_name = re.sub(r'/^\[(.+)\]$/', '', new_name)
+                new_name = re.sub(r'\[[^\]]*\]', '', new_name)
+                new_name = re.sub(r'\[.*', '', new_name)
+                new_name = re.sub(r'\(.*', '', new_name)
+                new_name +='.mp3'
+                new_name = new_name.replace('.mp3.mp3','.mp3')
 
-        if self.ui.checkBox_mp3.isChecked():
-            new_name = new_name.replace('.mp3.mp3','.mp3')
-            new_name = new_name.replace(' .mp3','.mp3')
-            new_name = new_name.replace('_.mp3','.mp3')
+            if self.ui.checkBox_mp3.isChecked():
+                new_name = new_name.replace('.mp3.mp3','.mp3')
+                new_name = new_name.replace('  .mp3','.mp3')
+                new_name = new_name.replace(' .mp3','.mp3')
+                
+                new_name = new_name.replace('-.mp3','.mp3')
 
-        if self.ui.checkBox_brackets.isChecked():
-            new_name = re.sub(r'\([^\(\)]*(\([^\(\)]*(\([^\(\)]*\))*[^\(\)]*\))*[^\(\)]*\)', '', new_name)
-            new_name = re.sub(r'/^\[(.+)\]$/', '', new_name)
-            new_name = new_name.replace('  .mp3','.mp3')
-            new_name = new_name.replace(' .mp3','.mp3')
+            if self.ui.checkBox_underscore.isChecked():
+                k = new_name.find('_')
+                if k == 0:
+                    new_name.replace('_','')
+                if k>0 and k < len(new_name)-2:
+                    if new_name[k-1].isalpha() and new_name[k+1].isalpha():
+                        new_name = new_name.replace('_',"'")
+                new_name = new_name.replace('_.mp3','.mp3')
+                new_name = new_name.replace(' _',' ')
+                new_name = new_name.replace('_ ',' ')
+                new_name = new_name.replace('_',' ')
+                new_name = new_name.replace('- -','-')
 
-        if self.ui.checkBox_defis.isChecked():
-            new_name = new_name.replace('—','-')
+            if self.ui.checkBox_doublespace.isChecked():
+                new_name = new_name.replace('—','-')
+                new_name = new_name.replace('  ',' ')
 
-        if self.ui.checkBox_underscore.isChecked():
-            new_name = new_name.replace('_',' ')
-
-        if self.ui.checkBox_user_replace.isChecked():
-            edit_from = self.ui.lineEdit_from.text()
-            edit_to = self.ui.lineEdit_to.text()
-            new_name = new_name.replace(edit_from, edit_to)
+            if self.ui.checkBox_user_replace.isChecked():
+                edit_from = self.ui.lineEdit_from.text()
+                edit_to = self.ui.lineEdit_to.text()
+                new_name = new_name.replace(edit_from, edit_to)
 
         new_path = os.path.join(path, new_name)
         return new_name, new_path, old_path, old_name
@@ -134,47 +164,60 @@ class MyWindow(QtWidgets.QMainWindow):
     def _rename_file(self, new_name, new_path, old_path, old_name):
         try:
             os.rename(old_path, new_path)
-            print("RENAME: "+ old_name +'\t\t'+new_name)
+            self.ui.plainTextEdit_log.insertPlainText("\nRENAME:\t"+ old_name +'\n-->\t'+new_name)
+            #print("RENAME: "+ old_name +'\t\t'+new_name)
         except FileExistsError:
             if self.ui.checkBox_samename.isChecked():
                 os.remove(new_path)
                 os.rename(old_path, new_path)
-                print("DELETE: "+old_name+'\t\t'+new_name)
+                self.ui.plainTextEdit_log.insertPlainText("\nDELETE:\t"+old_name+'\n-->\t'+new_name)
+                #print("DELETE: "+old_name+'\t\t'+new_name)
             else:
                 os.rename(old_path, os.path.join(dir, new_name + " - Copy"))
-                print("COPY: "+old_name+'\t\t'+new_name)
+                self.ui.plainTextEdit_log.insertPlainText("\nCOPY:\t"+old_name+'\n-->\t'+new_name)
+                #print("COPY: "+old_name+'\t\t'+new_name)
 
     def _run(self):
-        while self.current_file != len(self.file_paths)-1:
-            path = self.file_paths[self.current_file]
-            new_name, new_path, old_path, old_name = self._rename(path)
-            self.ui.progressBar.setProperty("value", self.current_file/len(self.file_paths)*100)
+        if len(self.file_paths)<=0:
+            self.ui.plainTextEdit_log.insertPlainText('\nINFO: No files found')
+            #print('INFO: No files found')
+        else:
+            while self.current_file != len(self.file_paths)-1:
+                path = self.file_paths[self.current_file]
+                new_name, new_path, old_path, old_name = self._rename(path)
+                self.ui.progressBar.setProperty("value", self.current_file/len(self.file_paths)*100)
 
-            if ((self.ui.radioButton_all.isChecked()) and (new_name != old_name)): # Force rename
-                self._rename_file(new_name, new_path, old_path, old_name)
-                self.renames_counter += 1
-            elif (new_name != old_name):
-                self.old_path = old_path
-                self.old_name = old_name
-                self.mydialog.ui.lineEdit_cur_name.setText(old_name)
-                self.mydialog.ui.lineEdit_new_name.setText(new_name)
-                self.mydialog.show()
-                break
+                if ((self.ui.radioButton_all.isChecked()) and (new_name != old_name)): # Force rename
+                    self._rename_file(new_name, new_path, old_path, old_name)
+                    self.renames_counter += 1
+                elif (new_name != old_name):
+                    self.old_path = old_path
+                    self.old_name = old_name
+                    self.mydialog.ui.lineEdit_cur_name.setText(old_name)
+                    self.mydialog.ui.lineEdit_new_name.setText(new_name)
+                    self.mydialog.show()
+                    break
 
-            self.current_file += 1
-        if self.current_file == len(self.file_paths)-1:
-            self._end()
+                self.current_file += 1
+            if self.current_file == len(self.file_paths)-1:
+                self._end()
 
     def _start(self):
         self.ui.progressBar.setEnabled(True)
         self.ui.progressBar.setTextVisible(True)
         self._get_files_list()
+        #print("INFO: mp3 files found: "+str(len(self.file_paths)))
+        if self.start_first_time:
+            self.ui.plainTextEdit_log.insertPlainText("INFO: MP3 files found: "+str(len(self.file_paths)))
+            self.start_first_time = False
+        else:
+            self.ui.plainTextEdit_log.insertPlainText("\nINFO: MP3 files found: "+str(len(self.file_paths)))
         self._run()  
 
 
     def _end(self):
-        print("INFO: mp3 files found: "+str(len(self.file_paths)))
-        print("INFO: Total renames: "+ str(self.renames_counter))
+        self.ui.plainTextEdit_log.insertPlainText("\nINFO: Total renames: "+ str(self.renames_counter))
+        #print("INFO: Total renames: "+ str(self.renames_counter))
         self.file_paths = []
         self.new_name = ''
         self.old_path = ''
