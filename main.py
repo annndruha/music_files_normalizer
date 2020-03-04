@@ -1,5 +1,5 @@
 # Music file names normalizer
-# Develop by @Annndruha
+# Developed by https://github.com/Annndruha
 # 2020
 
 from PyQt5 import QtWidgets
@@ -11,8 +11,6 @@ application = MainWindow()
 application.show()
 
 sys.exit(app.exec())
-
-
 
 # TO DO:
 # Fix logs scroll

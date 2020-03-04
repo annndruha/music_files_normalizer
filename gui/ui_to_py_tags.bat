@@ -1,1 +1,1 @@
-pyuic5 tags.ui -o tags.py
+pyuic5 tags.ui -o ui_tags_editor.py

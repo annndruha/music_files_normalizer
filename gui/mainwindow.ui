@@ -589,24 +589,6 @@
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="checkBox_samename">
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="locale">
-         <locale language="English" country="UnitedStates"/>
-        </property>
-        <property name="text">
-         <string>Delete if file have same filename</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QCheckBox" name="checkBox_underscore">
         <property name="font">
          <font>
@@ -637,10 +619,28 @@
          <locale language="English" country="UnitedStates"/>
         </property>
         <property name="text">
-         <string>Replace doublespace to space</string>
+         <string>Correct dashs and doublespace</string>
         </property>
         <property name="checked">
          <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox_samename">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="locale">
+         <locale language="English" country="UnitedStates"/>
+        </property>
+        <property name="text">
+         <string>Delete if file have same filename</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -1035,9 +1035,6 @@
     <property name="locale">
      <locale language="English" country="UnitedStates"/>
     </property>
-    <property name="value">
-     <number>0</number>
-    </property>
     <property name="textVisible">
      <bool>false</bool>
     </property>
@@ -1114,7 +1111,6 @@
   <tabstop>check_include_subfolder</tabstop>
   <tabstop>checkBox_mp3</tabstop>
   <tabstop>checkBox_brackets</tabstop>
-  <tabstop>checkBox_samename</tabstop>
   <tabstop>checkBox_underscore</tabstop>
   <tabstop>checkBox_doublespace</tabstop>
   <tabstop>checkBox_user_replace</tabstop>

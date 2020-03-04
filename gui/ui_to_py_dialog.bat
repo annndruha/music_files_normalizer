@@ -1,1 +1,1 @@
-pyuic5 name_dialog.ui -o name_dialog.py
+pyuic5 name_dialog.ui -o ui_rename.py
