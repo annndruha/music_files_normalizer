@@ -3,23 +3,26 @@
 # 2020
 
 from PyQt5 import QtWidgets
-from mainwindow import Ui_MainWindow
-from implementation import MyWindow, MyDialog
+from implementation import MainWindow
 import sys
 
 app = QtWidgets.QApplication([])
-application = MyWindow()
+application = MainWindow()
 application.show()
 
 sys.exit(app.exec())
 
+
+
 # TO DO:
-#+ fix ru tags encoding
-#+ disable console
-#+ read full code add comments
-#+ make screenshots
-#+ make readme
-#+ Make exe
+# Fix logs scroll
+# fix ru tags encoding
+# disable console
+# read full code add comments
+# Try to translate?
+# make screenshots
+# make readme
+# Make exe
 
 # DONE
 #+ add tags functions

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'dialog.ui'
+# Form implementation generated from reading ui file 'name_dialog.ui'
 #
 # Created by: PyQt5 UI code generator 5.5.1
 #
@@ -8,23 +8,23 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(720, 250)
+class Ui_NameDialog(object):
+    def setupUi(self, NameDialog):
+        NameDialog.setObjectName("NameDialog")
+        NameDialog.resize(720, 250)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
-        Dialog.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(NameDialog.sizePolicy().hasHeightForWidth())
+        NameDialog.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(10)
-        Dialog.setFont(font)
+        NameDialog.setFont(font)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("resources/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        Dialog.setWindowIcon(icon)
-        Dialog.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
-        self.verticalLayoutWidget = QtWidgets.QWidget(Dialog)
+        NameDialog.setWindowIcon(icon)
+        NameDialog.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
+        self.verticalLayoutWidget = QtWidgets.QWidget(NameDialog)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 701, 151))
         self.verticalLayoutWidget.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
@@ -60,7 +60,7 @@ class Ui_Dialog(object):
         self.lineEdit_new_name.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.lineEdit_new_name.setObjectName("lineEdit_new_name")
         self.verticalLayout.addWidget(self.lineEdit_new_name)
-        self.horizontalLayoutWidget = QtWidgets.QWidget(Dialog)
+        self.horizontalLayoutWidget = QtWidgets.QWidget(NameDialog)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(10, 170, 701, 61))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
@@ -87,15 +87,15 @@ class Ui_Dialog(object):
         self.pushButton_apply.setObjectName("pushButton_apply")
         self.horizontalLayout.addWidget(self.pushButton_apply)
 
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(NameDialog)
+        QtCore.QMetaObject.connectSlotsByName(NameDialog)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, NameDialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Manual rename"))
-        self.label_cur_name.setText(_translate("Dialog", "Current name:"))
-        self.label_new_name.setText(_translate("Dialog", "New name:"))
-        self.pushButton_cancel.setText(_translate("Dialog", "Cancel"))
-        self.pushButton_skip.setText(_translate("Dialog", "Skip"))
-        self.pushButton_apply.setText(_translate("Dialog", "Apply"))
+        NameDialog.setWindowTitle(_translate("NameDialog", "Manual rename"))
+        self.label_cur_name.setText(_translate("NameDialog", "Current name:"))
+        self.label_new_name.setText(_translate("NameDialog", "New name:"))
+        self.pushButton_cancel.setText(_translate("NameDialog", "Cancel"))
+        self.pushButton_skip.setText(_translate("NameDialog", "Skip"))
+        self.pushButton_apply.setText(_translate("NameDialog", "Apply"))
 
