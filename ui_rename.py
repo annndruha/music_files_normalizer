@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file 'name_dialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.5.1
+# Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_NameDialog(object):
     def setupUi(self, NameDialog):
@@ -17,11 +19,13 @@ class Ui_NameDialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(NameDialog.sizePolicy().hasHeightForWidth())
         NameDialog.setSizePolicy(sizePolicy)
+        NameDialog.setMinimumSize(QtCore.QSize(720, 250))
+        NameDialog.setMaximumSize(QtCore.QSize(720, 250))
         font = QtGui.QFont()
         font.setPointSize(10)
         NameDialog.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("resources/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../img/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         NameDialog.setWindowIcon(icon)
         NameDialog.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.verticalLayoutWidget = QtWidgets.QWidget(NameDialog)
@@ -29,6 +33,7 @@ class Ui_NameDialog(object):
         self.verticalLayoutWidget.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setSpacing(13)
         self.verticalLayout.setObjectName("verticalLayout")
         self.label_cur_name = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -64,6 +69,7 @@ class Ui_NameDialog(object):
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(10, 170, 701, 61))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.pushButton_cancel = QtWidgets.QPushButton(self.horizontalLayoutWidget)
         font = QtGui.QFont()
@@ -98,4 +104,3 @@ class Ui_NameDialog(object):
         self.pushButton_cancel.setText(_translate("NameDialog", "Cancel"))
         self.pushButton_skip.setText(_translate("NameDialog", "Skip"))
         self.pushButton_apply.setText(_translate("NameDialog", "Apply"))
-

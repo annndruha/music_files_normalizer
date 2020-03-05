@@ -1,2 +1,3 @@
-# music_files_normalizer
-Program to fast correct .mp3 file names
+# Music files normalizer
+## Correcting filenames and edit tags
+### Features

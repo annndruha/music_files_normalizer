@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file 'tags.ui'
 #
-# Created by: PyQt5 UI code generator 5.5.1
+# Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_TagEditor(object):
     def setupUi(self, TagEditor):
@@ -18,13 +20,14 @@ class Ui_TagEditor(object):
         font.setPointSize(10)
         TagEditor.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("resources/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../img/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         TagEditor.setWindowIcon(icon)
         TagEditor.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.horizontalLayoutWidget = QtWidgets.QWidget(TagEditor)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(140, 430, 401, 51))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.pushButton_tags_cancel = QtWidgets.QPushButton(self.horizontalLayoutWidget)
         self.pushButton_tags_cancel.setObjectName("pushButton_tags_cancel")
@@ -39,6 +42,7 @@ class Ui_TagEditor(object):
         self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(140, 60, 401, 41))
         self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.label_14 = QtWidgets.QLabel(self.horizontalLayoutWidget_2)
         self.label_14.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
@@ -69,6 +73,7 @@ class Ui_TagEditor(object):
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(140, 110, 401, 311))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
         self.lineEdit = QtWidgets.QLineEdit(self.verticalLayoutWidget)
         self.lineEdit.setObjectName("lineEdit")
@@ -98,6 +103,7 @@ class Ui_TagEditor(object):
         self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(10, 110, 121, 301))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.label = QtWidgets.QLabel(self.verticalLayoutWidget_2)
         self.label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
@@ -159,4 +165,3 @@ class Ui_TagEditor(object):
         self.label_9.setText(_translate("TagEditor", "Composer"))
         self.label_10.setText(_translate("TagEditor", "BPM"))
         self.label_6.setText(_translate("TagEditor", "Filename"))
-

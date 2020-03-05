@@ -1,0 +1,1 @@
+pyinstaller --noconsole --icon 'img/icon.ico' --onefile main.py -n "Music files normalizer" --add-data "img/icon.ico;img" --add-data "img/folder.ico;img"

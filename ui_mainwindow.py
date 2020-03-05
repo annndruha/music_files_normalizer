@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.5.1
+# Created by: PyQt5 UI code generator 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -169,7 +171,7 @@ class Ui_MainWindow(object):
         font.setPointSize(9)
         MainWindow.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("resources/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("../img/icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.widget = QtWidgets.QWidget(MainWindow)
         self.widget.setMinimumSize(QtCore.QSize(840, 500))
@@ -195,6 +197,7 @@ class Ui_MainWindow(object):
         self.verticalLayoutWidget.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.name_layout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.name_layout.setContentsMargins(0, 0, 0, 0)
         self.name_layout.setObjectName("name_layout")
         self.checkBox_mp3 = QtWidgets.QCheckBox(self.verticalLayoutWidget)
         font = QtGui.QFont()
@@ -279,7 +282,7 @@ class Ui_MainWindow(object):
         self.pushButton_path.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.pushButton_path.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("resources/folder.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("../img/folder.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_path.setIcon(icon1)
         self.pushButton_path.setObjectName("pushButton_path")
         self.check_include_subfolder = QtWidgets.QCheckBox(self.group_file_open)
@@ -306,6 +309,7 @@ class Ui_MainWindow(object):
         self.verticalLayoutWidget_2.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.options_layout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
+        self.options_layout.setContentsMargins(0, 0, 0, 0)
         self.options_layout.setObjectName("options_layout")
         self.radioButton_dialog = QtWidgets.QRadioButton(self.verticalLayoutWidget_2)
         font = QtGui.QFont()
@@ -351,6 +355,7 @@ class Ui_MainWindow(object):
         self.verticalLayoutWidget_3.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         self.verticalLayoutWidget_3.setObjectName("verticalLayoutWidget_3")
         self.tags_layout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_3)
+        self.tags_layout.setContentsMargins(0, 0, 0, 0)
         self.tags_layout.setObjectName("tags_layout")
         self.checkBox_delete_tags = QtWidgets.QCheckBox(self.verticalLayoutWidget_3)
         self.checkBox_delete_tags.setEnabled(False)
@@ -450,4 +455,3 @@ class Ui_MainWindow(object):
         self.label__autor.setText(_translate("MainWindow", "<html><head/><body><p><a href=\"https://github.com/Annndruha\"><span style=\" color:#000000;\">by Annndruha</span></a></p></body></html>"))
         self.plainTextEdit_log.setPlaceholderText(_translate("MainWindow", "Logs"))
         self.checkBox_logs.setText(_translate("MainWindow", "Show info"))
-

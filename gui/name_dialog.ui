@@ -16,6 +16,18 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>720</width>
+    <height>250</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>720</width>
+    <height>250</height>
+   </size>
+  </property>
   <property name="font">
    <font>
     <pointsize>10</pointsize>
@@ -26,7 +38,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>resources/icon.ico</normaloff>resources/icon.ico</iconset>
+    <normaloff>../img/icon.ico</normaloff>../img/icon.ico</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>

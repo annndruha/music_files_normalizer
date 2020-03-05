@@ -32,7 +32,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>resources/icon.ico</normaloff>resources/icon.ico</iconset>
+    <normaloff>../img/icon.ico</normaloff>../img/icon.ico</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>

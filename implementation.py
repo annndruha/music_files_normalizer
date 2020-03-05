@@ -5,6 +5,7 @@
 import os
 import re
 import eyed3
+import sys
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSignal
@@ -12,21 +13,35 @@ from ui_mainwindow import Ui_MainWindow
 from ui_rename import Ui_NameDialog
 from ui_tags_editor import Ui_TagEditor
 
-class NameDialog(QtWidgets.QMainWindow):
+class NameDialog(QtWidgets.QDialog):
     def __init__(self):
         super(NameDialog, self).__init__()
         self.ui = Ui_NameDialog()
         self.ui.setupUi(self)
+
+        if hasattr(sys, "_MEIPASS"): icondir = os.path.join(sys._MEIPASS, 'img/icon.ico')
+        else: icondir = 'img/icon.ico'
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(icondir), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.setWindowIcon(icon)
+
         self.clear()
     def clear(self):
         self.ui.lineEdit_cur_name.clear()
         self.ui.lineEdit_new_name.clear()
 
-class TagsDialog(QtWidgets.QMainWindow):
+class TagsDialog(QtWidgets.QDialog):
     def __init__(self):
         super(TagsDialog, self).__init__()
         self.ui = Ui_TagEditor()
         self.ui.setupUi(self)
+
+        if hasattr(sys, "_MEIPASS"): icondir = os.path.join(sys._MEIPASS, 'img/icon.ico')
+        else: icondir = 'img/icon.ico'
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(icondir), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.setWindowIcon(icon)
+
         self.clear()
     def clear(self):
         self.ui.track_num_0.clear()
@@ -46,6 +61,26 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        # Set icons from generated temp file while launch
+        if hasattr(sys, "_MEIPASS"):
+            icondir = os.path.join(sys._MEIPASS, 'img/icon.ico')
+            folderdir = os.path.join(sys._MEIPASS, 'img/folder.ico')
+        else:
+            icondir = 'img/icon.ico'
+            folderdir = 'img/folder.ico'
+
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(icondir), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.setWindowIcon(icon)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(folderdir), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.ui.pushButton_path.setIcon(icon1)
+
+        self.setMinimumSize(840,500)
+        self.resize(840,500)
+        self.setMaximumSize(840,500)
+
         self.name = NameDialog()
         self.tags = TagsDialog()
         self.ui.lineEdit_filepath.setText(str(os.getcwd()))
@@ -61,10 +96,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.name.ui.pushButton_cancel.clicked.connect(self._name_cancel)
         self.name.ui.pushButton_skip.clicked.connect(self._name_skip)
         self.name.ui.pushButton_apply.clicked.connect(self._name_apply)
+        self.name.finished.connect(self._name_handler)
 
         self.tags.ui.pushButton_tags_cancel.clicked.connect(self._tags_cancel)
         self.tags.ui.pushButton_tags_skip.clicked.connect(self._tags_skip)
         self.tags.ui.pushButton_save.clicked.connect(self._tags_apply)
+        self.tags.finished.connect(self._tags_handler)
 
 #===SLOTS===
 #===Main Window Slot
@@ -89,19 +126,19 @@ class MainWindow(QtWidgets.QMainWindow):
 
             self.file_paths = list(filter(lambda x: x.endswith('.mp3'), self.file_paths))
         except:
-            self.log("\nERROR: Incorrect folder path")
+            self.log("ERROR: Incorrect folder path")
             self.ui.lineEdit_filepath.setText("ERROR: Incorrect folder path")
 
         if len(self.file_paths)<=0:
-            self.log('\nERROR: No mp3 files found in selected directory')
+            self.log('ERROR: No mp3 files found in selected directory')
             self.ui.lineEdit_filepath.setText('No mp3 files found in selected directory')
             self.end()
         else:
             self.ui.progressBar.setRange(0, len(self.file_paths))
             self.ui.progressBar.setEnabled(True)
             self.ui.progressBar.setTextVisible(True)
-            self.log(f"\n===START===")
-            self.log(f"\n===INFO: MP3 files found: {str(len(self.file_paths))}")
+            self.log(f"===START===")
+            self.log(f"===INFO: MP3 files found: {str(len(self.file_paths))}")
             self.run() # If files found and writedown in file_paths run implementation
 
     # Select path button
@@ -137,38 +174,51 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.checkBox_set_artist_tag.setEnabled(state)
         self.ui.checkBox_set_song_tag.setEnabled(state)
 
-#===Rename dialog slots
+#===Rename dialog slots 
+    def _name_handler(self):
+        if self.name.result() == 0:
+            self.end()
+        elif self.name.result() == 100:
+            self.cur_file += 1
+            self.run()
+        elif self.name.result() == 200:
+            self.new_name = self.name.ui.lineEdit_new_name.text()
+            self.rename_file()
+            self.cur_file +=1
+            self.run()
+
     # Cancel and end button
     def _name_cancel(self):
-        self.name.close()
-        self.end()
+        self.name.done(0)
 
     # Skip file button
     def _name_skip(self):
-        self.cur_file += 1
-        self.name.close()
-        self.run()
+        self.name.done(100)
 
     # Do rename button
     def _name_apply(self):
-        self.new_name = self.name.ui.lineEdit_new_name.text()
-        self.rename_file()
-        self.cur_file +=1
-        self.name.close()
-        self.run()
+        self.name.done(200)
 
 #===Tag editor slots
+    def _tags_handler(self):
+        if self.tags.result() == 0:
+            self.end()
+        elif self.tags.result() == 100:
+            self.tags.clear()
+            self.cur_file += 1
+            self.run()
+        elif self.tags.result() == 200:
+            self.tags.clear()
+            self.cur_file +=1
+            self.run()
+        
     # Cancel and end button
     def _tags_cancel(self):
-        self.tags.close()
-        self.end()
+        self.tags.done(0)
 
     # Skip file button
     def _tags_skip(self):
-        self.tags.clear()
-        self.tags.close()
-        self.cur_file += 1
-        self.run()
+        self.tags.done(100)
 
     # Save tags changes button
     def _tags_apply(self):
@@ -189,14 +239,11 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
             audio.tag.save(self.full_path)
             self.edited_tags_counter += 1
-            self.log(f'\nINFO: Tags changed: {self.cur_name}')
+            self.log(f'INFO: Tags changed: {self.cur_name}')
         except:
-            self.log(f'\nFAIL TO SAVE TAGS: {self.cur_name}')
-
-        self.cur_file +=1
-        self.tags.clear()
-        self.tags.close()
-        self.run()
+            self.log(f'FAIL TO SAVE TAGS: {self.cur_name}')
+        self.tags.done(200)
+        
 
 #===FUNCTIONS===
     def run(self):
@@ -240,7 +287,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.checkBox_set_song_tag.isChecked()):
                     self.tags_force_edit()
                 else:
-                    self.log(f"\nERROR: Tags edit options doesn't selected")
+                    self.log(f"ERROR: Tags edit options doesn't selected")
                     self.cur_file = len(self.file_paths)-1
                     break
 
@@ -250,15 +297,17 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # Log window at the right
     def log(self, text):
-        self.ui.plainTextEdit_log.insertPlainText(text)
+        self.ui.plainTextEdit_log.appendPlainText(text)
         max = self.ui.plainTextEdit_log.verticalScrollBar().maximum()
-        if (max - 24) >0: max = max -3
-        self.ui.plainTextEdit_log.verticalScrollBar().setValue(max)
+        if max < 24:
+            self.ui.plainTextEdit_log.verticalScrollBar().setValue(0)
+        else:
+            self.ui.plainTextEdit_log.verticalScrollBar().setValue(max-24)
 
     # End of run function
     def end(self, info = True):
-        if info: self.log(f"\nINFO: Total renames: {str(self.renames_counter)}")
-        if info: self.log(f"\nINFO: Total tags changes: {str(self.edited_tags_counter)}")
+        if info: self.log(f"INFO: Total renames: {str(self.renames_counter)}")
+        if info: self.log(f"INFO: Total tags changes: {str(self.edited_tags_counter)}")
         self.clear()
         self.ui.progressBar.setProperty("value", 0)
         self.ui.progressBar.setEnabled(False)
@@ -267,16 +316,23 @@ class MainWindow(QtWidgets.QMainWindow):
     # Raname mp3 file
     def rename_file(self):
         try:
-            os.rename(self.full_path, self.new_path)
-            self.log(f"\nRENAME:\t{self.cur_name}\n-->\t{self.new_name}")
-        except FileExistsError:
-            if self.ui.checkBox_samename.isChecked():
-                os.remove(self.new_path)
+            try:
                 os.rename(self.full_path, self.new_path)
-                self.log(f"\nDELETE:\t{self.cur_name}\n-->\t{self.new_name}")
-            else:
-                os.rename(self.full_path, os.path.join(dir, self.new_name + " - Copy"))
-                self.log(f"\nCOPY:\t{self.cur_name}\n-->\t{self.new_name}")
+                self.log(f"RENAME:\t{self.cur_name}\n-->\t{self.new_name}")
+            except FileExistsError:
+                if self.ui.checkBox_samename.isChecked():
+                    os.remove(self.new_path)
+                    os.rename(self.full_path, self.new_path)
+                    self.log(f"DELETE:\t{self.cur_name}\n-->\t{self.new_name}")
+                else:
+                    ext = self.new_name[-4:]
+                    nme = self.new_name[:-4]
+                    self.new_name = nme+' - Copy'+ext
+
+                    os.rename(self.full_path, os.path.join(self.dir_path + self.new_name))
+                    self.log(f"COPY:\t{self.cur_name}\n-->\t{self.new_name}")
+        except:
+            self.log(f"FAIL TO RENAME:\t{self.cur_name}\n-->\t{self.new_name}")
         self.renames_counter += 1
 
     # Auto rename rules functions
@@ -344,11 +400,6 @@ class MainWindow(QtWidgets.QMainWindow):
             if audio.tag.track_num[1] is not None: self.tags.ui.track_num_1.setValue(audio.tag.track_num[1])
             if audio.tag.disc_num[0] is not None: self.tags.ui.disc_num_0.setValue(audio.tag.disc_num[0])
             if audio.tag.disc_num[1] is not None: self.tags.ui.disc_num_1.setValue(audio.tag.disc_num[1])
-
-            #a = audio.tag.title
-            #b = a.encode('utf-8')
-            #c = b.decode('cp1252', 'ignore')
-
             if audio.tag.title is not None: self.tags.ui.lineEdit.setText(str(audio.tag.title))
             if audio.tag.artist is not None: self.tags.ui.lineEdit_2.setText(str(audio.tag.artist))
             if audio.tag.artist_url is not None: self.tags.ui.lineEdit_3.setText(str(audio.tag.artist_url))
@@ -361,7 +412,7 @@ class MainWindow(QtWidgets.QMainWindow):
             return True
         except:
             self.tags.clear()
-            self.log(f"\nERROR: File doesn't supported tags edit: {self.cur_name}")
+            self.log(f"ERROR: File doesn't supported tags edit: {self.cur_name}")
             return False
 
     # Force editing tags according to tags checkboxes
@@ -371,18 +422,18 @@ class MainWindow(QtWidgets.QMainWindow):
             if self.ui.checkBox_delete_tags.isChecked():
                 audio.tag.clear()
                 audio.tag.save(self.full_path)
-                self.log(f'\nINFO: Tags deleted in: {self.cur_name}')
+                self.log(f'INFO: Tags deleted in: {self.cur_name}')
             if self.ui.checkBox_set_artist_tag.isChecked():
                 audio.tag.artist = (self.cur_name.split(' - ')[0]).replace('.mp3', '')
                 audio.tag.save(self.full_path)
-                self.log(f'\nINFO: Artist tag added in: {self.cur_name}')
+                self.log(f'INFO: Artist tag added in: {self.cur_name}')
             if self.ui.checkBox_set_song_tag.isChecked():
                 audio.tag.title = (self.cur_name.split(' - ')[1]).replace('.mp3', '')
                 audio.tag.save(self.full_path)
-                self.log(f'\nINFO: Title tag added in: {self.cur_name}')
+                self.log(f'INFO: Title tag added in: {self.cur_name}')
             self.edited_tags_counter +=1
         except:
-            self.log(f'\nERROR: Can\'t auto tag change in: {self.cur_name}')
+            self.log(f'ERROR: Can\'t auto tag change in: {self.cur_name}')
 
     # Clear all changed variables
     def clear(self):
