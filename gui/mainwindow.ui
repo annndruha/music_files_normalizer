@@ -507,7 +507,6 @@
     <property name="font">
      <font>
       <pointsize>20</pointsize>
-      <weight>50</weight>
       <bold>false</bold>
      </font>
     </property>
@@ -611,7 +610,6 @@
         <property name="font">
          <font>
           <pointsize>10</pointsize>
-          <weight>50</weight>
           <bold>false</bold>
          </font>
         </property>
@@ -822,7 +820,7 @@
      <locale language="English" country="UnitedStates"/>
     </property>
     <property name="title">
-     <string>Options</string>
+     <string>Action</string>
     </property>
     <widget class="QWidget" name="verticalLayoutWidget_2">
      <property name="geometry">
@@ -966,7 +964,7 @@
          <string>Delete all tags</string>
         </property>
         <property name="checked">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -987,7 +985,7 @@
          <string>Set new Artist-tag as part before &quot; - &quot;</string>
         </property>
         <property name="checked">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1008,7 +1006,7 @@
          <string>Set new Song-name-tag as part after &quot; - &quot;</string>
         </property>
         <property name="checked">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
        </widget>
       </item>
