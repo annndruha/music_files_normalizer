@@ -1,1 +1,2 @@
-pyinstaller --noconsole --icon 'img/icon.ico' --onefile main.py -n "Music files normalizer" --add-data "img/icon.ico;img" --add-data "img/folder.ico;img"
+REM All python modules must be installed in global python, not venv
+pyinstaller --noconsole --icon img/icon.ico --onefile main.py -n "Music files normalizer" --add-data "img/icon.ico;img" --add-data "img/folder.ico;img"
