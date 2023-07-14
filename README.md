@@ -18,8 +18,8 @@ Mass name editor:
 
 Tag editor:
 + Open window with most useful tags
-+ Delete all tags
 + Set artist and song tag by filename
++ Delete all tags
 
 **Screenshots:**
 
