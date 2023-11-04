@@ -2,7 +2,7 @@
 
 ### Correcting filenames and edit tags
 
-Use for mass music files renaming and correcting. To run on windows just download exe portable verion.
+Use for mass music files renaming and correcting. For run on Windows just download exe portable verion.
 
 **Features:**
 
